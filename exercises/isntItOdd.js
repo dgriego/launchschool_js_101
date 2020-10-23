@@ -5,7 +5,7 @@
 // returns true if value is odd
 
 function isOdd(int) {
-  return Math.abs(int) % 2 == 1;
+  return Math.abs(int) % 2 === 1;
 }
 
 console.log(isOdd(2)); // => false
