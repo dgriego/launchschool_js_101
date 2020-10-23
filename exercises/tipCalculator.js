@@ -7,10 +7,12 @@
 const ReadlineSync = require('readline-sync');
 
 console.log('What is the bill?');
-const bill_total = parseInt(ReadlineSync.prompt(), 10);
+const bill_total = parseFloat(ReadlineSync.prompt());
+console.log(bill_total)
 
 console.log('What is the tip percentage?');
 const tip_decimal = parseInt(ReadlineSync.prompt(), 10) / 100;
+const tip_amount = bill_total * tip_decimal;
 
-console.log(tip_decimal);
-
+console.log(`The tip is $${tip_amount.toFixed(2)}`);
+console.log(`The total is $${(bill_total + tip_amount).toFixed(2)}`);
