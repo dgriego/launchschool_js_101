@@ -1,9 +1,6 @@
-// ask the user for the first number
-// parse the string as a float
-// ask the user for the second number
-// parse the string as a float
-// ask for the operation to perform
-// perform the calculation and display result to the user
+//
+//
+//
 
 const readline = require('readline-sync');
 
@@ -13,21 +10,23 @@ const invalidNumber = (number) => (
   number.trimStart() === '' || Number.isNaN(Number(number))
 );
 
+const getValidNumberFromUser = () => {
+  let number = readline.question();
+  while (invalidNumber(number)) {
+    prompt("Hmm... that doesn't look like a valid number.");
+    number = readline.question();
+  }
+
+  return number;
+};
+
 prompt('Welcome to Calculator!');
 
 prompt("What's the first number?");
-let number1 = readline.question();
-while (invalidNumber(number1)) {
-  prompt("Hmm... that doesn't look like a valid number.");
-  number1 = readline.question();
-}
+let number1 = getValidNumberFromUser();
 
 prompt("What's the second number?");
-let number2 = readline.question();
-while (invalidNumber(number2)) {
-  prompt("Hmm... that doesn't look like a valid number.");
-  number2 = readline.question();
-}
+let number2 = getValidNumberFromUser();
 
 prompt('What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide');
 let operation = readline.question();
