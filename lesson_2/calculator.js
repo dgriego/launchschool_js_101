@@ -23,24 +23,24 @@ prompt('english or espanol? e/s');
 const language = readline.question().toLowerCase();
 messages = language === 'e' ? messages.en : messages.es;
 
-let performMoreCalculations = 'yes';
+let performMoreCalculations = messages.yes;
 
-while (performMoreCalculations === 'yes') {
+while (performMoreCalculations === messages.yes) {
   console.clear();
 
-  prompt('Welcome to Calculator!');
+  prompt(messages.welcome);
 
-  prompt("What's the first number?");
+  prompt(messages.question.first_number);
   let number1 = getValidNumberFromUser();
 
-  prompt("What's the second number?");
+  prompt(messages.question.second_number);
   let number2 = getValidNumberFromUser();
 
-  prompt('What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide');
+  prompt(messages.question.operation_selection);
   let operation = readline.question();
 
   while (!['1', '2', '3', '4'].includes(operation)) {
-    prompt('Must choose 1, 2, 3 or 4');
+    prompt(messages.error.bad_operation_selection);
     operation = readline.question();
   }
 
@@ -62,12 +62,12 @@ while (performMoreCalculations === 'yes') {
       break;
   }
 
-  prompt(`The result is: ${output}`);
+  prompt(`${messages.result}: ${output}`);
 
-  prompt("Would you like to perform another calculation?\ntype 'yes' or 'no'");
+  prompt(messages.question.another_calculation);
   performMoreCalculations = readline.question().toLowerCase();
-  while (!['yes', 'no'].includes(performMoreCalculations)) {
-    prompt('Must choose yes or no');
+  while (![messages.yes, 'n'].includes(performMoreCalculations)) {
+    prompt(messages.error.bad_continuation_selection);
     performMoreCalculations = readline.question();
   }
 }

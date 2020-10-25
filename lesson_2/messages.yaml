@@ -1,16 +1,15 @@
 en:
   welcome: Welcome to Calculator!
   result: The result is
-  yes: yes
-  no: no
+  yes: y
   question:
     first_number: What's the first number?
     second_number: What's the second number?
-    operation_selection: What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide
-    another_calculation: Would you like to perform another calculation?\ntype 'yes' or 'no'
+    operation_selection: "What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide"
+    another_calculation: "Would you like to perform another calculation?\ntype 'y'(yes) or 'n'(no)"
   error:
     bad_operation_selection: Must choose 1, 2, 3 or
-    bad_continuation_selection: Must choose yes or no
+    bad_continuation_selection: Must choose y or n
 
 es:
   hello: hola
