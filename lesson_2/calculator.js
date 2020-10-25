@@ -1,7 +1,5 @@
-//
-//
-//
-
+const fs = require('fs');
+const YAML = require('yaml');
 const readline = require('readline-sync');
 
 const prompt = (message) => console.log(`=> ${message}`);
@@ -19,6 +17,11 @@ const getValidNumberFromUser = () => {
 
   return number;
 };
+
+let messages = YAML.parse(fs.readFileSync('./messages.yaml', 'utf8'));
+prompt('english or spanish? e/s');
+const language = readline.question().toLowerCase();
+messages = language === 'e' ? messages.en : messages.es;
 
 let performMoreCalculations = 'yes';
 
