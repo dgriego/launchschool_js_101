@@ -19,7 +19,7 @@ const getValidNumberFromUser = () => {
 };
 
 let messages = YAML.parse(fs.readFileSync('./messages.yaml', 'utf8'));
-prompt('english or spanish? e/s');
+prompt('english or espanol? e/s');
 const language = readline.question().toLowerCase();
 messages = language === 'e' ? messages.en : messages.es;
 
