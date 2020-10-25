@@ -8,8 +8,18 @@ en:
     operation_selection: "What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide"
     another_calculation: "Would you like to perform another calculation?\ntype 'y'(yes) or 'n'(no)"
   error:
-    bad_operation_selection: Must choose 1, 2, 3 or
+    bad_operation_selection: Must choose 1, 2, 3 or 4
     bad_continuation_selection: Must choose y or n
 
 es:
-  hello: hola
+  welcome: ¡Bienvenido a Calculadora!
+  result: El resultado es
+  yes: s
+  question:
+    first_number: ¿Cuál es el primer número?
+    second_number: Cual es el segundo numero?
+    operation_selection: "¿Qué operación le gustaría realizar?\n1) Añadir 2) Sustraer 3) Multiplicar 4) Dividir"
+    another_calculation: "¿Le gustaría realizar otro cálculo?\n's'(si) o 'n'(no)"
+  error:
+    bad_operation_selection: Debe elegir 1, 2, 3 o 4
+    bad_continuation_selection: Debe elegir s or n
