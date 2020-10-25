@@ -20,38 +20,51 @@ const getValidNumberFromUser = () => {
   return number;
 };
 
-prompt('Welcome to Calculator!');
+let performMoreCalculations = 'yes';
 
-prompt("What's the first number?");
-let number1 = getValidNumberFromUser();
+while (performMoreCalculations === 'yes') {
+  console.clear();
 
-prompt("What's the second number?");
-let number2 = getValidNumberFromUser();
+  prompt('Welcome to Calculator!');
 
-prompt('What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide');
-let operation = readline.question();
+  prompt("What's the first number?");
+  let number1 = getValidNumberFromUser();
 
-while (!['1', '2', '3', '4'].includes(operation)) {
-  prompt('Must choose 1, 2, 3 or 4');
-  operation = readline.question();
+  prompt("What's the second number?");
+  let number2 = getValidNumberFromUser();
+
+  prompt('What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide');
+  let operation = readline.question();
+
+  while (!['1', '2', '3', '4'].includes(operation)) {
+    prompt('Must choose 1, 2, 3 or 4');
+    operation = readline.question();
+  }
+
+  let output;
+  number1 = Number(number1);
+  number2 = Number(number2);
+  switch (operation) {
+    case '1':
+      output = number1 + number2;
+      break;
+    case '2':
+      output = number1 - number2;
+      break;
+    case '3':
+      output = number1 * number2;
+      break;
+    case '4':
+      output = number1 / number2;
+      break;
+  }
+
+  prompt(`The result is: ${output}`);
+
+  prompt("Would you like to perform another calculation?\ntype 'yes' or 'no'");
+  performMoreCalculations = readline.question().toLowerCase();
+  while (!['yes', 'no'].includes(performMoreCalculations)) {
+    prompt('Must choose yes or no');
+    performMoreCalculations = readline.question();
+  }
 }
-
-let output;
-number1 = Number(number1);
-number2 = Number(number2);
-switch (operation) {
-  case '1':
-    output = number1 + number2;
-    break;
-  case '2':
-    output = number1 - number2;
-    break;
-  case '3':
-    output = number1 * number2;
-    break;
-  case '4':
-    output = number1 / number2;
-    break;
-}
-
-prompt(`The result is: ${output}`);
