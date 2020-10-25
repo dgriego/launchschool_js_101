@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/dgriego/launchschool_js_101#readme",
   "dependencies": {
-    "readline-sync": "^1.4.10"
+    "readline-sync": "^1.4.10",
+    "yaml": "^1.10.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
