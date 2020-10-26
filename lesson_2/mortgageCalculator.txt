@@ -1,0 +1,92 @@
+3 pieces of information
+---
+1. loan amount
+2. Annual Percentage Rate (APR)
+3. loan duration
+
+will need to calculate from the information
+---
+1. monthly interest rate -
+2. loan duration in months
+
+FORMULA:
+let m = p * (j / (1 - Math.pow((1 + j), (-n))));
+
+m = monthly payment
+p = loan amount
+j = monthly interest rate
+n = loan duration in months
+
+requirements
+---
+1. print the payment as a dollar and cents amount
+2. need to convert APR to monthly interest rate
+3. support entering years and months
+4. support no-interest loans
+5. enter whole number to represent percentage
+
+output
+---
+1. monthly payment
+2. total after all payments
+3. total interest you will pay
+
+---
+possible features:
+  1. clear console after input and display 'persisted state' of value
+  ...
+eg.
+welcome
+loan amount($):
+8000
+
+clear console
+
+loan amount: $8000
+loan term years:
+10
+
+clear console
+...
+  2. store result in JSON file with a 'label'
+  3. list stored calculations
+  4. retrieve stored calculations
+---
+
+
+SEMI-PSEUDO
+---
+1. prompt welcome to mortgage calc message
+
+2.a on validation error
+  - display valid values and prompt for input again
+
+2.prompt for
+ 1. - loan amount (SET loanAmount)
+  - parseFloat at 2 decimal places
+  - validations:
+    - must be a valid float
+
+ 2. - APR (interest rate as a whole number) (SET apr)
+  - convert to monthly rate (r / 12) (SET monthlyInterestRate)
+  - parseFloat at 2 decimals
+  - validations:
+    - must be a valid float
+  SET apr = GET apr
+    - validFloat
+    - check for errors
+
+ 3. - loan duration
+  - convert years to months (y * 12)
+  - add months to ^
+  - validations
+    - years must be valid whole number
+    - months must be valid whole number
+  SET loanDurationInMonths = 0
+  GET loan duration in years
+   - parse to Int * 12 and increment loanDurationInMonths
+   - loanDurationInMonths = parse Int * 12
+  GET loan duration in months
+   - loanDurationInMonths = ^
+
+
