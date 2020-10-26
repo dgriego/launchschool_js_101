@@ -1,7 +1,7 @@
 {
-  "title": "Mortgage Calculator",
+  "title": "MORTGAGE CALCULATOR",
   "questions": {
-    "loan_amount": "Loan Amount:",
+    "loan_amount": "Loan amount:",
     "apr": "Annual Percentage Rate (APR):",
     "loan_duration_years": "Loan duration - Years",
     "loan_duration_months": "Loan duration - Months"
