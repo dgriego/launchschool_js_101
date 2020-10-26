@@ -66,6 +66,7 @@ const monthlyPayment = calculateMonthlyPayment(
 const totalPayment = monthlyPayment * loanDurationMonths;
 const totalInterest = totalPayment - loanAmount;
 
+// Display results
 prompt(`${messages['monthly_payment']}: ${floatToCurrency(monthlyPayment)}`);
 prompt(
   `${messages['total_payment']} (${loanDurationMonths} months): ${floatToCurrency(totalPayment)}`
