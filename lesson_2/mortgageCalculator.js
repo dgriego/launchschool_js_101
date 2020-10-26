@@ -5,31 +5,31 @@ const prompt = (text) => {
   console.log(`-> ${text}`);
 };
 
-const floatToCurrency = (float) => (
-  `$${float.toFixed(2)}`
+const numberToCurrency = (number) => (
+  `$${number.toFixed(2)}`
 );
 
-const validFloat = (float) => Number.isNaN(parseFloat(float));
+const validNumber = (number) => Number.isNaN(Number(number));
 
-const getValidFloatFromUser = () => {
-  let float = parseFloat(readline.question());
-  while (validFloat(float)) {
+const getValidNumberFromUser = () => {
+  let number = Number(readline.question());
+  while (validNumber(number)) {
     console.log(messages['error']['invalid_number']);
-    float = parseFloat(readline.question());
+    number = Number(readline.question());
   }
 
-  return float;
+  return number;
 };
 
-const getFloatGreaterThanZero = () => {
-  let float = getValidFloatFromUser();
+const getNumberGreaterThanZero = () => {
+  let number = getValidNumberFromUser();
 
-  while (float <= 0) {
+  while (number <= 0) {
     console.log(messages['error']['great_than_zero']);
-    float = getValidFloatFromUser();
+    number = getValidNumberFromUser();
   }
 
-  return float;
+  return number;
 };
 
 const calculateMonthlyPayment = (loanAmount, apr, loanDurationMonths) => {
@@ -40,22 +40,23 @@ const calculateMonthlyPayment = (loanAmount, apr, loanDurationMonths) => {
   );
 };
 
+// Begin
 console.log(messages['title']);
 
 // Loan Amount
 prompt(messages['question']['loan_amount']);
-let loanAmount = getFloatGreaterThanZero();
+let loanAmount = getNumberGreaterThanZero();
 
 // APR
 prompt(messages['question']['apr']);
-const apr = getValidFloatFromUser();
+const apr = getValidNumberFromUser();
 
 // Loan duration
 prompt(messages['question']['loan_duration_years']);
-const loanDurationYears = getFloatGreaterThanZero();
+const loanDurationYears = getNumberGreaterThanZero();
 
 prompt(messages['question']['loan_duration_months']);
-let loanDurationMonths = getValidFloatFromUser();
+let loanDurationMonths = getValidNumberFromUser();
 // convert years to months and increment total months
 loanDurationMonths += loanDurationYears * 12;
 
@@ -67,8 +68,8 @@ const totalPayment = monthlyPayment * loanDurationMonths;
 const totalInterest = totalPayment - loanAmount;
 
 // Display results
-prompt(`${messages['monthly_payment']}: ${floatToCurrency(monthlyPayment)}`);
+prompt(`${messages['monthly_payment']}: ${numberToCurrency(monthlyPayment)}`);
 prompt(
-  `${messages['total_payment']} (${loanDurationMonths} months): ${floatToCurrency(totalPayment)}`
+  `${messages['total_payment']} (${loanDurationMonths} months): ${numberToCurrency(totalPayment)}`
 );
-prompt(`${messages['total_interest']}: ${floatToCurrency(totalInterest)}`);
+prompt(`${messages['total_interest']}: ${numberToCurrency(totalInterest)}`);
