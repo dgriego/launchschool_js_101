@@ -9,27 +9,40 @@ const numberToCurrency = (number) => (
   `$${number.toFixed(2)}`
 );
 
-const validNumber = (number) => Number.isNaN(Number(number));
+const validNumber = (number) => {
+  return number.trimStart() === '' || Number.isNaN(Number(number));
+};
 
-const getValidNumberFromUser = () => {
-  let number = Number(readline.question());
+const getValidNumber = () => {
+  let number = readline.question();
   while (validNumber(number)) {
     console.log(messages['error']['invalid_number']);
-    number = Number(readline.question());
+    number = readline.question();
   }
 
   return number;
 };
 
 const getNumberGreaterThanZero = () => {
-  let number = getValidNumberFromUser();
+  let number = getValidNumber();
 
   while (number <= 0) {
-    console.log(messages['error']['great_than_zero']);
-    number = getValidNumberFromUser();
+    console.log(messages['error']['greater_than_zero']);
+    number = getValidNumber();
   }
 
-  return number;
+  return Number(number);
+};
+
+const getWholeNumber = () => {
+  let number = getValidNumber();
+
+  while (number < 0) {
+    console.log(messages['error']['negative_number']);
+    number = getValidNumber();
+  }
+
+  return Number(number);
 };
 
 const calculateMonthlyPayment = (loanAmount, apr, loanDurationMonths) => {
@@ -51,14 +64,14 @@ while (true) {
 
   // APR
   prompt(messages['question']['apr']);
-  const apr = getValidNumberFromUser();
+  const apr = getWholeNumber();
 
   // Loan duration
   prompt(messages['question']['loan_duration_years']);
   const loanDurationYears = getNumberGreaterThanZero();
 
   prompt(messages['question']['loan_duration_months']);
-  let loanDurationMonths = getValidNumberFromUser();
+  let loanDurationMonths = getWholeNumber();
   // convert years to months and increment total months
   loanDurationMonths += loanDurationYears * 12;
 
