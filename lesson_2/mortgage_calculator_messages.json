@@ -14,6 +14,7 @@
   "error": {
     "invalid_number": "Hmm... that doesn't look like a valid number",
     "greater_than_zero": "Enter a number greater than 0",
-    "negative_number": "Enter a 0 or positive whole number"
+    "negative_number": "Enter a 0 or positive whole number",
+    "not_y_or_n": "Please enter either 'y' or 'n'"
   }
 }

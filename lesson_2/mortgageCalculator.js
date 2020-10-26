@@ -94,7 +94,7 @@ while (true) {
   prompt(messages['question']['another_calculation']);
   let anotherCalculation = readline.question().toLowerCase();
   while (!['y', 'n'].includes(anotherCalculation)) {
-    prompt("Please enter either 'y' or 'n'");
+    prompt(messages['error']['not_y_or_n']);
     anotherCalculation = readline.question().toLowerCase();
   }
 
