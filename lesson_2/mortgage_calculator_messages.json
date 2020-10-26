@@ -3,9 +3,10 @@
   "monthly_payment": "Monthly payment",
   "total_payment": "Total payment",
   "total_interest": "Total interest",
+  "months": "months",
   "question": {
-    "loan_amount": "Loan amount:",
-    "apr": "Annual Percentage Rate (APR):",
+    "loan_amount": "Loan amount",
+    "apr": "Annual Percentage Rate (APR)",
     "loan_duration_years": "Loan duration - Years",
     "loan_duration_months": "Loan duration - Months"
   },

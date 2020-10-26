@@ -1,12 +1,13 @@
-// TODO
-// 1. ensure a number great than 0 has been entered
-
 const readline = require('readline-sync');
 const messages = require('./mortgage_calculator_messages.json');
 
 const prompt = (text) => {
   console.log(`-> ${text}`);
 };
+
+const floatToCurrency = (float) => (
+  `$${float.toFixed(2)}`
+);
 
 const validFloat = (float) => Number.isNaN(parseFloat(float));
 
@@ -64,3 +65,9 @@ const monthlyPayment = calculateMonthlyPayment(
 );
 const totalPayment = monthlyPayment * loanDurationMonths;
 const totalInterest = totalPayment - loanAmount;
+
+prompt(`${messages['monthly_payment']}: ${floatToCurrency(monthlyPayment)}`);
+prompt(
+  `${messages['total_payment']} (${loanDurationMonths} months): ${floatToCurrency(totalPayment)}`
+);
+prompt(`${messages['total_interest']}: ${floatToCurrency(totalInterest)}`);
