@@ -9,9 +9,9 @@ const numberToCurrency = (number) => (
   `$${number.toFixed(2)}`
 );
 
-const validNumber = (number) => {
-  return number.trimStart() === '' || Number.isNaN(Number(number));
-};
+const validNumber = (number) => (
+  number.trimStart() === '' || Number.isNaN(Number(number))
+);
 
 const getValidNumber = () => {
   let number = readline.question();
