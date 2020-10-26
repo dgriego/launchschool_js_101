@@ -10,6 +10,7 @@
     "loan_duration_months": "Loan duration - Months"
   },
   "error": {
-    "invalid_number": "Hmm... that doesn't look like a valid number"
+    "invalid_number": "Hmm... that doesn't look like a valid number",
+    "great_than_zero": "Enter a number greater than 0"
   }
 }

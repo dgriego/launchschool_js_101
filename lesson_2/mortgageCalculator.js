@@ -20,6 +20,17 @@ const getValidFloatFromUser = () => {
   return float;
 };
 
+const getFloatGreaterThanZero = () => {
+  let float = getValidFloatFromUser();
+
+  while (float <= 0) {
+    console.log(messages['error']['great_than_zero']);
+    float = getValidFloatFromUser();
+  }
+
+  return float;
+};
+
 const calculateMonthlyPayment = (loanAmount, apr, loanDurationMonths) => {
   const monthlyInterestRate = (apr / 100) / 12;
   return loanAmount * (
@@ -32,7 +43,7 @@ console.log(messages['title']);
 
 // Loan Amount
 prompt(messages['question']['loan_amount']);
-const loanAmount = getValidFloatFromUser();
+let loanAmount = getFloatGreaterThanZero();
 
 // APR
 prompt(messages['question']['apr']);
@@ -40,7 +51,7 @@ const apr = getValidFloatFromUser();
 
 // Loan duration
 prompt(messages['question']['loan_duration_years']);
-const loanDurationYears = getValidFloatFromUser();
+const loanDurationYears = getFloatGreaterThanZero();
 
 prompt(messages['question']['loan_duration_months']);
 let loanDurationMonths = getValidFloatFromUser();
