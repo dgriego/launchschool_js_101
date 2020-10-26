@@ -2,7 +2,7 @@ const readline = require('readline-sync');
 const messages = require('./mortgage_calculator_messages.json');
 
 const prompt = (text) => {
-  console.log(`-> ${text}`);
+  console.log(`\n-> ${text}`);
 };
 
 const numberToCurrency = (number) => (
@@ -83,14 +83,15 @@ while (true) {
   const totalInterest = totalPayment - loanAmount;
 
   // Display results
-  prompt(`${messages['monthly_payment']}: ${numberToCurrency(monthlyPayment)}`);
-  prompt(
+  console.log('\n-----------------------------------');
+  console.log(`${messages['monthly_payment']}: ${numberToCurrency(monthlyPayment)}`);
+  console.log(
     `${messages['total_payment']} (${loanDurationMonths} months): ${numberToCurrency(totalPayment)}`
   );
-  prompt(`${messages['total_interest']}: ${numberToCurrency(totalInterest)}`);
+  console.log(`${messages['total_interest']}: ${numberToCurrency(totalInterest)}`);
+  console.log('-----------------------------------');
 
   // Another Calculation?
-  console.log('-----------------------------------');
   prompt(messages['question']['another_calculation']);
   let anotherCalculation = readline.question().toLowerCase();
   while (!['y', 'n'].includes(anotherCalculation)) {
