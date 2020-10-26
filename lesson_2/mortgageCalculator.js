@@ -1,3 +1,6 @@
+// TODO
+// 1. ensure a number great than 0 has been entered
+
 const readline = require('readline-sync');
 const messages = require('./mortgage_calculator_messages.json');
 
@@ -6,7 +9,6 @@ const prompt = (text) => {
 };
 
 const validFloat = (float) => Number.isNaN(parseFloat(float));
-const validNumber = (float) => Number.isNaN(parseInt(float, 10));
 
 const getValidFloatFromUser = () => {
   let float = parseFloat(readline.question());
@@ -15,17 +17,15 @@ const getValidFloatFromUser = () => {
     float = parseFloat(readline.question());
   }
 
-  return float.toFixed(2);
+  return float;
 };
 
-const getValidNumberFromUser = () => {
-  let number = parseInt(readline.question(), 10);
-  while (validNumber(number)) {
-    console.log(messages['error']['invalid_number']);
-    number = parseInt(readline.question(), 10);
-  }
-
-  return number;
+const calculateMonthlyPayment = (loanAmount, apr, loanDurationMonths) => {
+  const monthlyInterestRate = (apr / 100) / 12;
+  return loanAmount * (
+    monthlyInterestRate /
+    (1 - Math.pow((1 + monthlyInterestRate), (-loanDurationMonths)))
+  );
 };
 
 console.log(messages['title']);
@@ -40,11 +40,15 @@ const apr = getValidFloatFromUser();
 
 // Loan duration
 prompt(messages['question']['loan_duration_years']);
-const loanDurationYears = getValidNumberFromUser();
+const loanDurationYears = getValidFloatFromUser();
 
 prompt(messages['question']['loan_duration_months']);
-let loanDurationMonths = getValidNumberFromUser();
+let loanDurationMonths = getValidFloatFromUser();
 // convert years to months and increment total months
 loanDurationMonths += loanDurationYears * 12;
 
-console.log(loanDurationMonths);
+// Calculate monthly payment
+const monthlyPayment = calculateMonthlyPayment(
+  loanAmount, apr, loanDurationMonths
+);
+console.log(monthlyPayment);
