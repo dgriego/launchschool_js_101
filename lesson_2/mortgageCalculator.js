@@ -30,14 +30,21 @@ const getValidNumberFromUser = () => {
 
 console.log(messages['title']);
 
+// Loan Amount
 prompt(messages['question']['loan_amount']);
 const loanAmount = getValidFloatFromUser();
 
+// APR
 prompt(messages['question']['apr']);
 const apr = getValidFloatFromUser();
 
+// Loan duration
 prompt(messages['question']['loan_duration_years']);
 const loanDurationYears = getValidNumberFromUser();
 
 prompt(messages['question']['loan_duration_months']);
-const loanDurationMonths = getValidNumberFromUser();
+let loanDurationMonths = getValidNumberFromUser();
+// convert years to months and increment total months
+loanDurationMonths += loanDurationYears * 12;
+
+console.log(loanDurationMonths);
