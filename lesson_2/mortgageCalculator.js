@@ -1,8 +1,17 @@
 const readline = require('readline-sync');
 const messages = require('./mortgage_calculator_messages.json');
+const colors = require('colors/safe');
 
 const prompt = (text) => {
-  console.log(`\n-> ${text}`);
+  console.log(`\n${colors.bold('->')} ${colors.brightCyan.bold(text)}`);
+};
+
+const error = (text) => {
+  console.log(colors.red(text));
+};
+
+const displayResult = (label, value) => {
+  console.log(`${colors.brightYellow(label)}: ${colors.bold(value)}`);
 };
 
 const numberToCurrency = (number) => (
@@ -16,7 +25,7 @@ const validNumber = (number) => (
 const getValidNumber = () => {
   let number = readline.question();
   while (validNumber(number)) {
-    console.log(messages['error']['invalid_number']);
+    error(messages['error']['invalid_number']);
     number = readline.question();
   }
 
@@ -27,7 +36,7 @@ const getNumberGreaterThanZero = () => {
   let number = getValidNumber();
 
   while (number <= 0) {
-    console.log(messages['error']['greater_than_zero']);
+    error(messages['error']['greater_than_zero']);
     number = getValidNumber();
   }
 
@@ -38,7 +47,7 @@ const getWholeNumber = () => {
   let number = getValidNumber();
 
   while (number < 0) {
-    console.log(messages['error']['negative_number']);
+    error(messages['error']['negative_number']);
     number = getValidNumber();
   }
 
@@ -56,7 +65,7 @@ const calculateMonthlyPayment = (loanAmount, apr, loanDurationMonths) => {
 while (true) {
   console.clear();
 
-  console.log(`--- ${messages['title']}---`);
+  console.log(colors.bgBrightWhite.black(`     ${messages['title']}     `));
 
   // Loan Amount
   prompt(messages['question']['loan_amount']);
@@ -84,23 +93,24 @@ while (true) {
 
   // Display results
   console.log('\n-----------------------------------');
-  console.log(`${messages['monthly_payment']}: ${numberToCurrency(monthlyPayment)}`);
-  console.log(
-    `${messages['total_payment']} (${loanDurationMonths} months): ${numberToCurrency(totalPayment)}`
+  displayResult(messages['monthly_payment'], numberToCurrency(monthlyPayment));
+  displayResult(
+    `${messages['total_payment']} (${loanDurationMonths} months)`,
+    numberToCurrency(totalPayment)
   );
-  console.log(`${messages['total_interest']}: ${numberToCurrency(totalInterest)}`);
+  displayResult(messages['total_interest'], numberToCurrency(totalInterest));
   console.log('-----------------------------------');
 
   // Another Calculation?
   prompt(messages['question']['another_calculation']);
   let anotherCalculation = readline.question().toLowerCase();
   while (!['y', 'n'].includes(anotherCalculation)) {
-    prompt(messages['error']['not_y_or_n']);
+    error(messages['error']['not_y_or_n']);
     anotherCalculation = readline.question().toLowerCase();
   }
 
   if (anotherCalculation === 'n') {
-    console.log('Bye!!!');
+    console.log(colors.magenta('\nBye for now!\n'));
     break;
   }
 }
