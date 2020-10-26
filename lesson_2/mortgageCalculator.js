@@ -22,5 +22,6 @@ console.log(messages['title']);
 prompt(messages['questions']['loan_amount']);
 const loanAmount = getValidFloatFromUser();
 
-console.log(loanAmount);
+prompt(messages['questions']['apr']);
+const apr = getValidFloatFromUser();
 
