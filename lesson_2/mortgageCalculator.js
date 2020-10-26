@@ -47,8 +47,9 @@ let loanDurationMonths = getValidFloatFromUser();
 // convert years to months and increment total months
 loanDurationMonths += loanDurationYears * 12;
 
-// Calculate monthly payment
+// Calculate
 const monthlyPayment = calculateMonthlyPayment(
   loanAmount, apr, loanDurationMonths
 );
-console.log(monthlyPayment);
+const totalPayment = monthlyPayment * loanDurationMonths;
+const totalInterest = totalPayment - loanAmount;
