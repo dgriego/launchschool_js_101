@@ -92,8 +92,9 @@ while (true) {
   // Another Calculation?
   console.log('-----------------------------------');
   prompt(messages['question']['another_calculation']);
-  let anotherCalculation = '';
+  let anotherCalculation = readline.question().toLowerCase();
   while (!['y', 'n'].includes(anotherCalculation)) {
+    prompt("Please enter either 'y' or 'n'");
     anotherCalculation = readline.question().toLowerCase();
   }
 
