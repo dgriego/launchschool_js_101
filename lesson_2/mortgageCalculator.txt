@@ -24,6 +24,7 @@ requirements
 3. support entering years and months
 4. support no-interest loans
 5. enter whole number to represent percentage
+6. store messages in JSON file
 
 output
 ---
@@ -56,12 +57,9 @@ clear console
 
 SEMI-PSEUDO
 ---
-1. prompt welcome to mortgage calc message
+1. START and WELCOME
 
-2.a on validation error
-  - display valid values and prompt for input again
-
-2.prompt for
+2. RETRIEVE and VALIDATE
  1. - loan amount (SET loanAmount)
   - parseFloat at 2 decimal places
   - validations:
@@ -88,5 +86,20 @@ SEMI-PSEUDO
    - loanDurationInMonths = parse Int * 12
   GET loan duration in months
    - loanDurationInMonths = ^
+2.a On validation error
+  - display valid values and prompt for input again
+
+3. CALCULATE
+  Run formula to retrieve
+  1. monthly payment - let m = p * (j / (1 - Math.pow((1 + j), (-n))));
+  2. total payment including interest
+    - monthly payment * months
+  3. total interest
+    - total payment including interest - loan amount
+
+4. DISPLAY
+  1. format dollar amount
+  2. format dollar amount
+  3. format dollar amount
 
 
