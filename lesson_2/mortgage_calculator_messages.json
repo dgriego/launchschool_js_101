@@ -8,7 +8,8 @@
     "loan_amount": "Loan amount",
     "apr": "Annual Percentage Rate (APR)",
     "loan_duration_years": "Loan duration - Years",
-    "loan_duration_months": "Loan duration - Months"
+    "loan_duration_months": "Loan duration - Months",
+    "another_calculation": "Would you like to perform another calculation? (y/n)"
   },
   "error": {
     "invalid_number": "Hmm... that doesn't look like a valid number",

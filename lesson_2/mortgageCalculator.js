@@ -40,36 +40,52 @@ const calculateMonthlyPayment = (loanAmount, apr, loanDurationMonths) => {
   );
 };
 
-// Begin
-console.log(messages['title']);
+while (true) {
+  console.clear();
 
-// Loan Amount
-prompt(messages['question']['loan_amount']);
-let loanAmount = getNumberGreaterThanZero();
+  console.log(`--- ${messages['title']}---`);
 
-// APR
-prompt(messages['question']['apr']);
-const apr = getValidNumberFromUser();
+  // Loan Amount
+  prompt(messages['question']['loan_amount']);
+  let loanAmount = getNumberGreaterThanZero();
 
-// Loan duration
-prompt(messages['question']['loan_duration_years']);
-const loanDurationYears = getNumberGreaterThanZero();
+  // APR
+  prompt(messages['question']['apr']);
+  const apr = getValidNumberFromUser();
 
-prompt(messages['question']['loan_duration_months']);
-let loanDurationMonths = getValidNumberFromUser();
-// convert years to months and increment total months
-loanDurationMonths += loanDurationYears * 12;
+  // Loan duration
+  prompt(messages['question']['loan_duration_years']);
+  const loanDurationYears = getNumberGreaterThanZero();
 
-// Calculate
-const monthlyPayment = calculateMonthlyPayment(
-  loanAmount, apr, loanDurationMonths
-);
-const totalPayment = monthlyPayment * loanDurationMonths;
-const totalInterest = totalPayment - loanAmount;
+  prompt(messages['question']['loan_duration_months']);
+  let loanDurationMonths = getValidNumberFromUser();
+  // convert years to months and increment total months
+  loanDurationMonths += loanDurationYears * 12;
 
-// Display results
-prompt(`${messages['monthly_payment']}: ${numberToCurrency(monthlyPayment)}`);
-prompt(
-  `${messages['total_payment']} (${loanDurationMonths} months): ${numberToCurrency(totalPayment)}`
-);
-prompt(`${messages['total_interest']}: ${numberToCurrency(totalInterest)}`);
+  // Calculate
+  const monthlyPayment = calculateMonthlyPayment(
+    loanAmount, apr, loanDurationMonths
+  );
+  const totalPayment = monthlyPayment * loanDurationMonths;
+  const totalInterest = totalPayment - loanAmount;
+
+  // Display results
+  prompt(`${messages['monthly_payment']}: ${numberToCurrency(monthlyPayment)}`);
+  prompt(
+    `${messages['total_payment']} (${loanDurationMonths} months): ${numberToCurrency(totalPayment)}`
+  );
+  prompt(`${messages['total_interest']}: ${numberToCurrency(totalInterest)}`);
+
+  // Another Calculation?
+  console.log('-----------------------------------');
+  prompt(messages['question']['another_calculation']);
+  let anotherCalculation = '';
+  while (!['y', 'n'].includes(anotherCalculation)) {
+    anotherCalculation = readline.question().toLowerCase();
+  }
+
+  if (anotherCalculation === 'n') {
+    console.log('Bye!!!');
+    break;
+  }
+}
