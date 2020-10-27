@@ -29,12 +29,12 @@ const addCommasToNumber = (number) => {
   let numWithCommasArr = [];
   let incrementer = 0;
 
-  for (let i = wholeNumberArr.length - 1; i >= 0; i -= 1) {
+  for (let idx = wholeNumberArr.length - 1; idx >= 0; idx -= 1) {
     incrementer += 1;
-    numWithCommasArr[i] = wholeNumberArr[i];
+    numWithCommasArr[idx] = wholeNumberArr[idx];
 
     if (incrementer % 3 === 0) {
-      numWithCommasArr.splice(i, 0, ',');
+      numWithCommasArr.splice(idx, 0, ',');
     }
   }
 
