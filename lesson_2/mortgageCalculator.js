@@ -14,9 +14,36 @@ const displayResult = (label, value) => {
   console.log(`${colors.brightYellow(label)}: ${colors.bold(value)}`);
 };
 
-const numberToCurrency = (number) => (
-  `$${number.toFixed(2)}`
-);
+const numberToCurrency = (number) => `$${number}`;
+
+const addCommasToNumber = (number) => {
+  if (number < 1000) {
+    return number;
+  }
+
+  const numArr = String(number).split('.');
+  const wholeNumberArr = numArr[0].split('');
+  const decimal = numArr[1] ? numArr[1] : '00';
+  let numWithCommasArr = [];
+  let incrementer = 0;
+
+  for (let i = wholeNumberArr.length - 1; i >= 0; i -= 1) {
+    incrementer += 1;
+    numWithCommasArr[i] = wholeNumberArr[i];
+
+    if (incrementer % 3 === 0) {
+      numWithCommasArr.splice(i, 0, ',');
+    }
+  }
+
+  return `${numWithCommasArr.join('')}.${decimal}`;
+};
+
+const formatNumber = (number) => {
+  number = number.toFixed(2);
+  number = addCommasToNumber(Number(number));
+  return numberToCurrency(number);
+};
 
 const validNumber = (number) => (
   number.trimStart() === '' || Number.isNaN(Number(number))
@@ -87,12 +114,12 @@ while (true) {
   const totalInterest = totalPayment - loanAmount;
 
   console.log('\n-----------------------------------');
-  displayResult(messages['monthly_payment'], numberToCurrency(monthlyPayment));
+  displayResult(messages['monthly_payment'], formatNumber(monthlyPayment));
   displayResult(
     `${messages['total_payment']} (${loanDurationMonths} months)`,
-    numberToCurrency(totalPayment)
+    formatNumber(totalPayment)
   );
-  displayResult(messages['total_interest'], numberToCurrency(totalInterest));
+  displayResult(messages['total_interest'], formatNumber(totalInterest));
   console.log('-----------------------------------');
 
   prompt(messages['question']['another_calculation']);

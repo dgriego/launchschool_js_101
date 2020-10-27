@@ -32,6 +32,15 @@ output
 2. total after all payments
 3. total interest you will pay
 
+add commas to number
+ - only if the number is >= 1000
+ - use looping logic to determine every 3rd placement of a digit
+ 1. SET incrementer = 1
+ 1. convert to string
+ 2. loop through string descending to start on last index
+ 3. add each element to new string
+ 3. if incrementer % 3 === 0, add comma
+
 ---
 possible features:
   1. clear console after input and display 'persisted state' of value
