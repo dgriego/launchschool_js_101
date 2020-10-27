@@ -2,6 +2,8 @@ const readline = require('readline-sync');
 const messages = require('./mortgage_calculator_messages.json');
 const colors = require('colors/safe');
 
+const MONTHS_IN_YEAR = 12;
+
 const prompt = (text) => {
   console.log(`\n${colors.bold('->')} ${colors.brightCyan.bold(text)}`);
 };
@@ -82,7 +84,8 @@ const getWholeNumber = () => {
 };
 
 const calculateMonthlyPayment = (loanAmount, apr, loanDurationMonths) => {
-  const monthlyInterestRate = (apr / 100) / 12;
+  const percentToDecimal = apr / 100;
+  const monthlyInterestRate = percentToDecimal / MONTHS_IN_YEAR;
   return loanAmount * (
     monthlyInterestRate /
     (1 - Math.pow((1 + monthlyInterestRate), (-loanDurationMonths)))
@@ -92,7 +95,8 @@ const calculateMonthlyPayment = (loanAmount, apr, loanDurationMonths) => {
 while (true) {
   console.clear();
 
-  console.log(colors.bgBrightWhite.black(`     ${messages['title']}     `));
+  const title = `${(' ').repeat(5)}${messages['title']}${(' ').repeat(5)}`;
+  console.log(colors.bgBrightWhite.black(title));
 
   prompt(messages['question']['loan_amount']);
   let loanAmount = getNumberGreaterThanZero();
@@ -105,7 +109,7 @@ while (true) {
 
   prompt(messages['question']['loan_duration_months']);
   let loanDurationMonths = getWholeNumber();
-  loanDurationMonths += loanDurationYears * 12;
+  loanDurationMonths += loanDurationYears * MONTHS_IN_YEAR;
 
   const monthlyPayment = calculateMonthlyPayment(
     loanAmount, apr, loanDurationMonths
