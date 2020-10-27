@@ -67,31 +67,25 @@ while (true) {
 
   console.log(colors.bgBrightWhite.black(`     ${messages['title']}     `));
 
-  // Loan Amount
   prompt(messages['question']['loan_amount']);
   let loanAmount = getNumberGreaterThanZero();
 
-  // APR
   prompt(messages['question']['apr']);
   const apr = getWholeNumber();
 
-  // Loan duration
   prompt(messages['question']['loan_duration_years']);
   const loanDurationYears = getNumberGreaterThanZero();
 
   prompt(messages['question']['loan_duration_months']);
   let loanDurationMonths = getWholeNumber();
-  // convert years to months and increment total months
   loanDurationMonths += loanDurationYears * 12;
 
-  // Calculate
   const monthlyPayment = calculateMonthlyPayment(
     loanAmount, apr, loanDurationMonths
   );
   const totalPayment = monthlyPayment * loanDurationMonths;
   const totalInterest = totalPayment - loanAmount;
 
-  // Display results
   console.log('\n-----------------------------------');
   displayResult(messages['monthly_payment'], numberToCurrency(monthlyPayment));
   displayResult(
@@ -101,7 +95,6 @@ while (true) {
   displayResult(messages['total_interest'], numberToCurrency(totalInterest));
   console.log('-----------------------------------');
 
-  // Another Calculation?
   prompt(messages['question']['another_calculation']);
   let anotherCalculation = readline.question().toLowerCase();
   while (!['y', 'n'].includes(anotherCalculation)) {
