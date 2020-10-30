@@ -49,17 +49,75 @@ function displayChoices() {
   console.log(displayStr);
 }
 
-function displayWinner(choice, computerChoice) {
+function determineWinner(choice, computerChoice) {
   if (win(choice, computerChoice)) {
-    prompt('You win!');
+    return 'player';
   } else if (choice === computerChoice) {
-    prompt("It's a tie");
+    return 'tie';
   } else {
-    prompt('Computer wins!');
+    return 'computer';
   }
 }
 
+function grandWinner(winCountRef) {
+  let winner = false;
+
+  if (winCountRef.player === 5) {
+    winner = 'player';
+  } else if (winCountRef.computer === 5) {
+    winner = 'computer';
+  }
+
+  return winner;
+}
+
+function displayGrandWinner(winner) {
+  let winnerStr = '';
+
+  if (winner === 'player') {
+    winnerStr = 'You are';
+  } else {
+    winnerStr = 'The COMPUTER is';
+  }
+
+  prompt(`${winnerStr} the GRAND WINNER! Thanks for playing!`);
+}
+
+function displayWinner(winner) {
+  switch (winner) {
+    case 'player':
+      prompt('You win!\n'.toUpperCase());
+      break;
+    case 'computer':
+      prompt('Computer wins!\n'.toUpperCase());
+      break;
+    case 'tie':
+      prompt("It's a tie\n".toUpperCase());
+      break;
+  }
+}
+
+function displayScore(winCountRef) {
+  console.log('Score');
+  console.log('-'.repeat(10));
+  console.log(`Player: ${winCountRef.player}`);
+  console.log(`Computer: ${winCountRef.computer}\n`);
+}
+
+function incrementWinCount(winner, winCountRef) {
+  winCountRef[winner] += 1;
+}
+
+let winCount = {
+  player: 0,
+  computer: 0
+};
+
 while (true) {
+  console.clear();
+
+  console.log('First to 5 matches is the GRAND WINNER, good luck!\n');
+  displayScore(winCount);
   displayChoices();
   let choice = readline.question();
 
@@ -75,9 +133,17 @@ while (true) {
 
   prompt(`You chose ${choice}, computer chose ${computerChoice}`);
 
-  displayWinner(choice, computerChoice);
+  const winner = determineWinner(choice, computerChoice);
+  displayWinner(winner);
+  incrementWinCount(winner, winCount);
 
-  prompt('Do you want to play again (y/n)?');
+  const grandWinnerVal = grandWinner(winCount);
+  if (grandWinnerVal) {
+    displayGrandWinner(grandWinnerVal);
+    break;
+  }
+
+  prompt('Continue to next round(y/n)?');
   let answer = readline.question().toLowerCase();
   while (answer[0] !== 'n' && answer[0] !== 'y') {
     prompt('Please enter "y" or "n".');
