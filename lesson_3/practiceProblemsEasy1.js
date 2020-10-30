@@ -68,3 +68,23 @@ str2.indexOf('Dino') > -1;
 str1.includes('Dino');
 
 str2.match('Dino') !== null;
+
+
+// add 'Dino' to the array
+let flintstones = ["Fred", "Barney", "Wilma", "Betty", "Bambam", "Pebbles"];
+
+// my solution
+// mutates calling array
+flintstones.push('Dino');
+
+// other solutions
+// concat returns a new array
+flinstones = flintstones.concat('Dino');
+
+
+// return a new version of the string ending at the index before 'house'
+let advice = "Few things in life are as important as house training your pet dinosaur.";
+
+advice.substring(0, advice.indexOf('house'));
+// or
+advice.slice(0, advice.indexOf('house'));
