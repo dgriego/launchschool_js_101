@@ -18,3 +18,7 @@ numbers.splice(0, numbers.length);
 // when using the + operator on two arrays
 // it converts them to strings and then concats the strings
 console.log([1, 2, 3] + [4, 5]); // 1,2,34,5
+
+// Question 4
+// calling .slice() makes a shallow copy
+// if objects are in the array it will still reference the same object
