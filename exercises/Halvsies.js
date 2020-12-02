@@ -31,3 +31,14 @@
 // given we have a limiter that represents length rather than index
 // as we loop through, we want to add to the first array if the index
 // is less than the limiter
+// 
+// if index < firstHalfLimiter
+//   add current element to newArr[0]
+// else
+//   add current eleemtn to newArr[1]
+//
+// return halvsy
+
+function halvsies(arr) {
+  let halvsy = [[], []];
+}
